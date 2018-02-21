@@ -5,17 +5,40 @@ body{
     background:#0183b2;
 }
 
-h2{
+h1{
     font-size:46px;
+}
+#title-container{
+    text-align:center;
 }
 
 #container {
+    display:flex;
+    flex-wrap:wrap;
     background:#596063;
+    margin:1em;
+}
 
+#title-container,#container{
+    max-width:1280px;
 }
 
 #stats {
+    margin:1em;
+}
 
+#car{
+   width:85%;
+}
+
+#display>p{
+    text-align:center;
+    width:85%
+}
+#current-word{
+    
+    text-align:center;
+    font-size:26px;
 }
 
 #display{
