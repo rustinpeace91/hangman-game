@@ -8,11 +8,22 @@
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="assets/javascript/game.js"></script>
 </head>
+
+
 <body>
-    <p>Press Any Key to get started</p>
-    <p>Wins:<span id = "total-wins"></span></p>
-    <p>Current Word:<span id = "current-word"></span></p>
-    <p>Number of Guesses Remaining: <span id = "guesses-remaining">15</span></p>
-    <p>Letters Already Guessed: <span id = "letters-guessed"></span></p>
+    <div id = "container">
+        <section id = "stats"> 
+            <h2>Car Hangman</h2>
+            <p>Press Any Key to get started</p>
+            <p>Wins:<span id = "total-wins"></span></p>
+            <p>Number of Guesses Remaining: <span id = "guesses-remaining">15</span></p>
+            <p>Letters Already Guessed: <span id = "letters-guessed"></span></p>
+        </section>
+
+        <section id ="display">
+            <p>Current Word: <span id = "current-word"></span></p>
+            <a href = "https://www.artstation.com/artwork/oyqqw" target = "_blank"><img id = "car" src = "assets/images/ferrari.jpg"></a>
+        </section>
+    </div>
 </body>
 </html>
