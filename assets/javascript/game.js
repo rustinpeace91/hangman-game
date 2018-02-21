@@ -1,7 +1,7 @@
 //waits until the document loads before the script runs. 
 
 //Variable for all the words available in the game, amount of game wins, and guesses remaining. 
-var words = ["honda", "ferrari", "drivetrain", "brakepad", "BMW", "engine", "rims", "yeah", "pitstop", "drift"];
+var words = ["HONDA", "FERRARI", "DRIVETRAIN", "BRAKEPAD", "BMW", "ENGINE", "RIMS", "YEAH", "PITSTOP", "DRIFT"];
 var wins = 0;
 var guessesRemaining = 15;
 //variable for the length of the words array. The -1 reflects the fact that the length functions starts at 1 where index starts at 0
@@ -49,7 +49,7 @@ window.onload = function() {
 
     document.onkeyup = function(event) {
             //creates a variable for the key pressed
-            var userGuess = event.key;
+            var userGuess = event.key.toUpperCase();
             //creates a value for the index of the key pressed
             var guessCheck = currentWord.indexOf(userGuess);
             //prints the current word to the screen
