@@ -1,4 +1,4 @@
-//waits until the document loads before the script runs. 
+
 
 //Variable for all the words available in the game, amount of game wins, and guesses remaining. 
 var words = ["HONDA", "FERRARI", "DRIVETRAIN", "BRAKEPAD", "BMW", "ENGINE", "RIMS", "YEAH", "PITSTOP", "DRIFT"];
@@ -9,6 +9,7 @@ var wordsLength = words.length -1;
 //creates an empty array to store the blank spaces and words (to get around the issue of strings being immutable)
 var blankWordArray = [];
 var currentWord = "";
+var oldWord = "";
 
 //function to make a new word
 function makeWord(){
@@ -28,20 +29,44 @@ function makeWord(){
     return currentWord;
 }
 
-//I tried to break most of hte actions up into functions, but ran into a lot of scope related errors.  I will revsit this if I have time. 
-/*function subtractScore(){
-    if(guessesRemaining > 0){ 
+//function that runs when the user guesses the wrong letter. 
+function subtractGuesses(userGuess){
+
+        //if you are not out of guesses it simply subtracts one guess and writes it to the HTML
         guessesRemaning = guessesRemaining--;
         document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
+        //the letter you guessed is also logged on screen
+        document.getElementById("letters-guessed").innerHTML += userGuess + " ";
 
-    } else {
-        alert("you lose! the correct word was " + currentWord);
-        currentWord = makeWord();
-        guessesRemaining = 15;
-        document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
-        document.getElementById("letters-guessed").innerHTML = "";
-    }
-}*/
+}
+
+//function that runs if the user wins the game
+function winGame(){
+    //your win is displayed in two alerts
+    alert("you win!");
+    //guesses are reset
+    guessesRemaining = 15;
+    document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
+    //the amount of wins increases by 1
+    wins += 1;
+    document.getElementById("total-wins").innerHTML = wins;
+    //a new word is created
+    //the letters guessed are deleted
+    document.getElementById("letters-guessed").innerHTML = "";
+}
+
+
+//function that runs if the user loses the game
+function loseGame(){
+    //alerts the user of their defeat
+    alert("you lose! try again");
+    guessesRemaining = 15;
+    document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
+    document.getElementById("letters-guessed").innerHTML = "";
+}
+
+
+//--------------START OF THE GAME---------------//
 
 window.onload = function() {
     //runs the makeWord(); function when the window loads
@@ -52,8 +77,6 @@ window.onload = function() {
             var userGuess = event.key.toUpperCase();
             //creates a value for the index of the key pressed
             var guessCheck = currentWord.indexOf(userGuess);
-            //prints the current word to the screen
-            var blankWord = document.getElementById("current-word").innerHTML;
 
             //initial check to see if user's guess is correct
             if(guessCheck > -1 ){
@@ -72,42 +95,17 @@ window.onload = function() {
                 }
 
             } else {
-                //if the user guess is not correct it first checks to make sure you haven't run out of guesses
-                if(guessesRemaining > 0){ 
-                    //if you are not out of guesses it simply subtracts one guess and writes it to the HTML
-                    guessesRemaning = guessesRemaining--;
-                    document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
-                    //the letter you guessed is also logged on screen
-                    document.getElementById("letters-guessed").innerHTML += userGuess + " ";
-                } else {
-                    //if you are out of guesses you are alerted of your loss, and the correct word is revealed
-                    alert("you lose! the correct word was " + currentWord);
-                    //a new word is generated
-                    currentWord = makeWord();
-                    //the guesses are replenished
-                    guessesRemaining = 15;
-                    //the guesses are reset and the letters guessed are deleted
-                    document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
-                    document.getElementById("letters-guessed").innerHTML = "";
-                    
-                }
+                subtractGuesses(userGuess);
             }
-
             //this if statement checks to see if you have won the game by checking if there are any underscores still left in the array representing the current word
             if(blankWordArray.includes("_") == false) {
-                //your win and the correct word is displayed in two alerts
-                alert("you win!");
-                alert(currentWord)
-                //guesses are reset
-                guessesRemaining = 15;
-                document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
-                //the amount of wins increases by 1
-                wins += 1;
-                document.getElementById("total-wins").innerHTML = wins;
-                //a new word is created
+                document.getElementById("last-word").innerHTML = currentWord;
+                winGame(currentWord);
                 currentWord = makeWord();
-                //the letters guessed are deleted
-                document.getElementById("letters-guessed").innerHTML = "";
+            }else if(guessesRemaining < 0) {
+                document.getElementById("last-word").innerHTML = currentWord;
+                loseGame();
+                currentWord = makeWord();
             }
 
     }

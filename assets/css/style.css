@@ -44,3 +44,7 @@ h1{
 #display{
 
 }
+
+.hidden {
+    display:none;
+}
