@@ -99,10 +99,17 @@ window.onload = function() {
             }
             //this if statement checks to see if you have won the game by checking if there are any underscores still left in the array representing the current word
             if(blankWordArray.includes("_") == false) {
+                //displays winning .gif
+                document.getElementById("gifs").src = "assets/images/sweetdrift.gif";
+                document.getElementById("gifs").classList.remove("hidden");
+                //displays word you just guessed in "Last Word"
                 document.getElementById("last-word").innerHTML = currentWord;
                 winGame(currentWord);
                 currentWord = makeWord();
             }else if(guessesRemaining < 0) {
+                //displays losing .gif
+                document.getElementById("gifs").src = "assets/images/notsosweetdrift.gif";
+                document.getElementById("gifs").classList.remove("hidden");
                 document.getElementById("last-word").innerHTML = currentWord;
                 loseGame();
                 currentWord = makeWord();

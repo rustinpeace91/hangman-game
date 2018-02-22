@@ -38,11 +38,15 @@ h1{
 #current-word{
     
     text-align:center;
-    font-size:26px;
+    font-size:30px;
 }
 
 #display{
 
+}
+
+#gifs{
+    width:200px;
 }
 
 .hidden {
