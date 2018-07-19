@@ -11,4 +11,4 @@ The theme of this game is cars and racing.  If you win or lose, an appropriate .
 Just run index.html in your browser, or visit: 
 https://rustinpeace91.github.io/hangman-game/
 
-![alt-text](https://imgur.com/a/8iyA4qC)
+![alt-text](https://imgur.com/a/8iyA4qC "Logo Title Text 1")
